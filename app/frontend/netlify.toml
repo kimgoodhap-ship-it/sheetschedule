@@ -1,0 +1,6 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Set VITE_API_URL in Netlify dashboard environment variables
+# Example: VITE_API_URL = "https://your-backend-url.com/api"

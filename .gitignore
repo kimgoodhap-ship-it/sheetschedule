@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Build
+dist/
+build/
+
+# Environment & credentials
+.env
+.env.local
+credentials.json
+*.pem
+*.key
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Netlify
+.netlify/
+
+# Misc
+*.log

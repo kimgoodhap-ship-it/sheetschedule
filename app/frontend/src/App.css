@@ -1,0 +1,791 @@
+/**
+ * SheetSchedule Styles
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden; /* 페이지 스크롤 완전 방지 */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  overflow: hidden; /* 페이지 전체 스크롤 방지 */
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 헤더 */
+.app-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.project-filter {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.project-filter:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.project-filter option {
+  color: #333;
+  background: white;
+}
+
+/* TimeScaleControl 스타일 */
+.time-scale-control {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.25rem;
+}
+
+.scale-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.scale-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.scale-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.scale-label {
+  min-width: 65px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: white;
+}
+
+.btn-refresh,
+.btn-add,
+.btn-export {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-refresh {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.btn-refresh:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.btn-add {
+  background: #4CAF50;
+  color: white;
+  font-weight: 500;
+}
+
+.btn-add:hover {
+  background: #43A047;
+}
+
+.btn-export {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.btn-export:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 메인 영역 */
+.app-main {
+  flex: 1;
+  padding: 1.5rem;
+  overflow: hidden; /* 메인 영역 스크롤 방지 - gantt-wrapper에서만 스크롤 */
+}
+
+.error-banner {
+  background: #FFEBEE;
+  color: #C62828;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-banner button {
+  background: #C62828;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* 간트 차트 래퍼 */
+.gantt-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100vh - 220px);
+  min-height: 400px;
+  overflow: auto; /* 가로/세로 스크롤 모두 활성화 */
+  display: flex;
+  flex-direction: column;
+  /* 스크롤바 스타일링 */
+  scrollbar-width: thin; /* Firefox: 얇은 스크롤바 */
+  scrollbar-color: #999 #f0f0f0; /* Firefox: 스크롤바 색상 */
+}
+
+/* Webkit 브라우저용 스크롤바 스타일링 - 항상 표시 */
+.gantt-wrapper::-webkit-scrollbar {
+  height: 14px; /* 가로 스크롤바 높이 */
+  width: 14px; /* 세로 스크롤바 너비 */
+}
+
+.gantt-wrapper::-webkit-scrollbar-track {
+  background: #f5f5f5; /* 트랙 배경색 */
+  border-radius: 7px;
+}
+
+.gantt-wrapper::-webkit-scrollbar-thumb {
+  background: #aaa; /* 스크롤 핸들 색상 */
+  border-radius: 7px;
+  border: 3px solid #f5f5f5; /* 핸들 테두리 */
+}
+
+.gantt-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #888; /* 호버 시 더 어둡게 */
+}
+
+/* 스크롤바 코너 (가로+세로 교차점) */
+.gantt-wrapper::-webkit-scrollbar-corner {
+  background: #f5f5f5;
+}
+
+/* gantt-task-react 차트를 가용 너비에 맞춤 */
+.gantt-wrapper > div {
+  width: 100% !important;
+  /* height와 flex 속성 제거 - 라이브러리 자체 레이아웃 사용 */
+}
+
+/* 헤더 틀고정 (sticky header) - 스크롤 시 헤더만 고정 */
+/* 작업목록 헤더 (프로젝트|작업명|담당자|종료일) */
+.gantt-wrapper ._3eULf > div:first-child > div:first-child {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #f5f5f5;
+}
+
+/* 차트 헤더는 header-overlay로 대체 - 원본 SVG는 JS에서 hidden 처리 */
+
+/* 차트 영역(_CZjuD)이 남은 공간을 채우도록 - 주간 뷰 폭 맞춤 */
+.gantt-wrapper > div > div:first-child > div:nth-child(2) {
+  flex: 1 1 auto !important;
+  min-width: 0;
+}
+
+/* SVG는 부모 너비에 맞추되, 최소 너비는 콘텐츠 크기 유지 (스크롤 시 흰색 영역 방지) */
+.gantt-wrapper > div > div:first-child > div:nth-child(2) > svg {
+  width: 100% !important;
+  min-width: fit-content !important;
+}
+
+.gantt-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background: white;
+  border-radius: 12px;
+  color: #888;
+}
+
+.gantt-empty p {
+  margin: 0.5rem 0;
+}
+
+/* 푸터 */
+.app-footer {
+  background: #f8f9fa;
+  padding: 1rem 2rem;
+  border-top: 1px solid #e0e0e0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* 모달 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.modal-error {
+  background: #FFEBEE;
+  color: #C62828;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+.dependency-warning {
+  background: #FFF3E0;
+  color: #E65100;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+.warning-item {
+  display: inline-block;
+  background: #FFE0B2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+}
+
+/* 폼 */
+form {
+  padding: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.progress-input {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-input input[type="range"] {
+  flex: 1;
+}
+
+.progress-input span {
+  min-width: 40px;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* 의존성 선택 */
+.dependency-list {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.dependency-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem;
+  cursor: pointer;
+  border-radius: 4px;
+  flex-direction: row;
+}
+
+.dependency-item:hover {
+  background: #f5f5f5;
+}
+
+.dependency-item input[type="checkbox"] {
+  margin: 0;
+}
+
+.dep-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* 모달 버튼 */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 1rem;
+}
+
+.btn-delete {
+  background: #F44336;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.btn-delete:hover {
+  background: #D32F2F;
+}
+
+.btn-cancel {
+  background: #f5f5f5;
+  color: #333;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background: #e0e0e0;
+}
+
+.btn-save {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-save:hover:not(:disabled) {
+  background: #5a6fd6;
+}
+
+.btn-save:disabled,
+.btn-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 의존성 연결선 스타일 */
+.dependency-line {
+  pointer-events: none;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 20;
+  }
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 달력 토글 그룹 */
+.calendar-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;  /* 헤더 우측 정렬 */
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+}
+
+/* 달력 네비게이션 화살표 버튼 */
+.calendar-nav-btn {
+  padding: 0.35rem 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calendar-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.calendar-toggle-btn {
+  padding: 0.35rem 0.6rem;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calendar-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.calendar-toggle-btn.active {
+  background: rgba(255, 255, 255, 0.9);
+  color: #667eea;
+}
+
+/* 플로팅 달력 */
+.floating-calendar {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 500;
+  min-width: 200px;
+  max-width: 600px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.calendar-months {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.calendar-month {
+  min-width: 180px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: #fafafa;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 0.4rem;
+}
+
+.month-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.month-close-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.month-close-btn:hover {
+  color: #666;
+}
+
+.weekday-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 0.25rem;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #666;
+  padding: 0.2rem 0;
+}
+
+.weekday.sunday {
+  color: #E53935;
+}
+
+.weekday.saturday {
+  color: #1E88E5;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+.calendar-day {
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 0.3rem 0;
+  border-radius: 4px;
+  cursor: default;
+}
+
+.calendar-day.empty {
+  visibility: hidden;
+}
+
+.calendar-day.today {
+  background: #667eea;
+  color: white;
+  font-weight: 700;
+}
+
+.calendar-day.holiday {
+  color: #E53935;
+  font-weight: 700;
+}
+
+.calendar-day.weekend {
+  color: #E53935;
+  font-weight: 700;
+}
+
+.calendar-day:not(.empty):not(.today):hover {
+  background: #f0f0f0;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 1rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .header-controls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 1rem;
+  }
+
+  .calendar-toggle-group {
+    margin-left: 0;
+  }
+
+  .floating-calendar {
+    right: 10px;
+    left: 10px;
+    max-width: calc(100vw - 20px);
+  }
+}
+
+/* =====================================================
+   커스텀 가로 스크롤바 (상단 고정)
+   ===================================================== */
+
+/* gantt-task-react 라이브러리의 기본 가로 스크롤바 숨김 */
+.gantt-wrapper [class*="_2k9Ys"] {
+  overflow-x: scroll !important;
+  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;        /* IE/Edge */
+}
+
+.gantt-wrapper [class*="_2k9Ys"]::-webkit-scrollbar {
+  height: 0 !important;
+  display: none !important;        /* Chrome/Safari */
+}
+
+/* 커스텀 스크롤바 오버레이 컨테이너 */
+.scrollbar-overlay {
+  position: absolute;
+  z-index: 101;
+  background: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 스크롤바 트랙 */
+.scrollbar-track {
+  width: 100%;
+  height: 12px;
+  background: #e8e8e8;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  margin: 2px 4px;
+  box-sizing: border-box;
+}
+
+/* 스크롤바 썸 (드래그 핸들) */
+.scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #999;
+  border-radius: 6px;
+  min-width: 40px;
+  cursor: grab;
+  transition: background 0.15s;
+}
+
+.scrollbar-thumb:hover {
+  background: #777;
+}
+
+.scrollbar-thumb:active,
+.scrollbar-thumb.dragging {
+  cursor: grabbing;
+  background: #666;
+}
