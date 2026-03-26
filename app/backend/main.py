@@ -225,6 +225,15 @@ async def health_check():
     }
 
 
+@app.get("/api/sheet-url")
+async def get_sheet_url():
+    """Get the Google Spreadsheet URL for direct access"""
+    spreadsheet_id = os.getenv("GOOGLE_SPREADSHEET_ID")
+    if not spreadsheet_id:
+        raise HTTPException(status_code=404, detail="Spreadsheet ID not configured")
+    return {"url": f"https://docs.google.com/spreadsheets/d/{spreadsheet_id}/edit"}
+
+
 @app.get("/api/projects", response_model=list[str])
 async def get_projects(source: Optional[str] = None):
     """Get unique project names from schedules"""

@@ -24,6 +24,7 @@ function App() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(null);
+  const [sheetUrl, setSheetUrl] = useState<string | null>(null);
 
   const [visibleMonths, setVisibleMonths] = useState<number[]>([]);
   const [baseMonthOffset, setBaseMonthOffset] = useState(0);
@@ -80,6 +81,15 @@ function App() {
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  // Fetch sheet URL once on mount
+  useEffect(() => {
+    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+    fetch(`${API_BASE}/sheet-url`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.url) setSheetUrl(data.url); })
+      .catch(() => {});
+  }, []);
 
   const handleCreate = async (data: ScheduleCreateRequest) => {
     try {
@@ -255,7 +265,26 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>SheetSchedule</h1>
+        <div className="header-title-group">
+          <h1>SheetSchedule</h1>
+          {sheetUrl && (
+            <a
+              href={sheetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-open-sheet"
+              title="Open source Google Sheet"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="8" y1="13" x2="16" y2="13"/>
+                <line x1="8" y1="17" x2="16" y2="17"/>
+              </svg>
+              Open Sheet
+            </a>
+          )}
+        </div>
         <div className="header-controls">
           <select
             className="project-filter"
