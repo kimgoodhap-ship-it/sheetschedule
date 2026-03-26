@@ -113,7 +113,9 @@
 | 2026-03-26 | README.md + 배포 가이드 + Google 설정 가이드 작성 | Claude Code | 완료 |
 | 2026-03-27 | UI 다듬기 (영어 너비 조정, JSON export/import 기능 추가) | Claude Code | 완료 |
 | 2026-03-27 | 데모용 Google Sheet 생성 (API로 자동 생성, 18개 샘플 데이터) | Claude Code | 완료 |
-| - | 데모 사이트 배포 (Backend: Railway/Render, Frontend: Netlify) | Claude Code | 대기 |
+| 2026-03-27 | Backend 배포: GCP Cloud Run (sheetschedule-api) | Claude Code | 완료 |
+| 2026-03-27 | Frontend 배포: Netlify (sheetschedule-demo) | Claude Code | 완료 |
+| 2026-03-27 | 데모 사이트 동작 확인 (18개 스케줄, 간트 차트 정상) | Claude Code | 완료 |
 | - | Gumroad 리스팅 문구 | claude.ai | 대기 |
 | - | 마케팅 초안 | claude.ai | 대기 |
 
@@ -139,7 +141,39 @@
 - **Service Account**: 기존 EddyBot의 service-account.json 재사용
 - 영어 헤더 + 18개 샘플 일정 + 링크로 누구나 읽기 가능
 
+### 데모 사이트 (배포 완료, 2026-03-27)
+- **Frontend**: https://sheetschedule-demo.netlify.app/
+- **Backend**: https://sheetschedule-api-920976615761.asia-northeast3.run.app (GCP Cloud Run)
+- **GitHub**: https://github.com/kimgoodhap-ship-it/sheetschedule
+
 ### 남은 작업
-- **Phase 6**: 데모 사이트 배포 (Backend → Railway/Render, Frontend → Netlify)
 - **Gumroad**: 리스팅 문구, 커버 이미지, 가격 설정
 - **마케팅**: Reddit 게시글, 블로그 포스트 초안
+
+
+## 전략 결정 사항 (2026-03-27, claude.ai에서 논의)
+
+### 판매 방식: 2단계 접근
+**1단계 (지금)**: 소스코드 패키지로 Gumroad 출시
+- 타겟: 개발자, 인디해커 (셀프 배포 가능한 사람)
+- 가격: USD 19-29 (일회성)
+- 구매자가 직접 배포하는 셀프 호스팅 방식
+- README + 배포 가이드로 충분히 안내
+
+**2단계 (추후, 반응 보고 결정)**: SaaS 호스팅 버전 추가
+- 타겟: 비개발자 PM/마케터까지 확장
+- 가격: 월 구독 USD 5-10
+- 가입하면 바로 사용 가능한 호스팅 서비스
+- 멀티테넌트 인증, 서버 인프라 필요
+
+### 결정 배경
+- 이 프로젝트의 1차 목적은 수익 극대화가 아니라 마켓플레이스 판매 경험
+- SaaS는 회원가입/대시보드/결제 연동 등 추가 개발이 필요해서 출시가 늦어짐
+- 소스코드 판매는 지금 바로 가능하고, 개발자 타겟이면 셀프 배포가 진입 장벽이 아님
+- Gumroad에서 소스코드 파는 제품 대부분이 이 방식
+
+### Claude Code 작업 지침
+- 현재 진행 중인 데모 사이트 배포는 그대로 완료할 것 (Gumroad 리스팅용 데모)
+- Gumroad 리스팅에서 개발자 친화적, 소스코드 패키지, self-hosted를 명확히 표기
+- README에 배포 난이도와 필요 기술 수준을 솔직하게 명시
+- SaaS 버전은 당장 개발하지 않음 (추후 별도 결정)
