@@ -117,6 +117,8 @@
 | 2026-03-27 | Frontend 배포: Netlify (sheetschedule-demo) | Claude Code | 완료 |
 | 2026-03-27 | 데모 사이트 동작 확인 (18개 스케줄, 간트 차트 정상) | Claude Code | 완료 |
 | 2026-03-27 | "Open Sheet" 버튼 추가 (웹앱→구글시트 바로 연결) | Claude Code | 완료 |
+| 2026-03-27 | 보안 점검: API 에러 메시지 일반화, schedule_id 검증, 패키징 스크립트 | Claude Code | 완료 |
+| 2026-03-27 | Gumroad 패키지 보안 검증 (민감 문자열 0건 PASS, 92KB) | Claude Code | 완료 |
 | - | Gumroad 리스팅 문구 | claude.ai | 대기 |
 | - | 마케팅 초안 | claude.ai | 대기 |
 
