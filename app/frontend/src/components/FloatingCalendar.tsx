@@ -4,7 +4,7 @@
  */
 
 import { useMemo } from 'react';
-import { isWeekend } from '../utils/koreanHolidays';
+import { isWeekend } from '../utils/dateUtils';
 
 interface FloatingCalendarProps {
   visibleMonths: number[];
