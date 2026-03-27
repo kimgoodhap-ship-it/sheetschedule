@@ -67,6 +67,19 @@ VITE_API_URL=https://your-backend-url.com/api npm run build
 
 Upload the `dist/` folder to any static hosting (S3, GitHub Pages, etc.)
 
+## Security Notes
+
+**CORS**: Never use `ALLOWED_ORIGINS=*` in production. Always set it to your specific frontend domain:
+```
+ALLOWED_ORIGINS=https://your-app.netlify.app
+```
+
+**HTTPS**: Always use HTTPS for both frontend and backend in production. Google Sheets API credentials travel through your backend — HTTP would expose them.
+
+**Credentials**: Never commit `credentials.json` or `.env` to git. Use environment variables in your hosting platform (Railway, Render, Cloud Run) instead of files.
+
+**Base64 Credentials**: When using `GOOGLE_CREDENTIALS_BASE64`, set it only in your deployment platform's environment variables, never in code or config files.
+
 ## Post-Deployment Checklist
 
 - [ ] Backend health check: `GET https://your-api-url/api/health`
@@ -75,3 +88,5 @@ Upload the `dist/` folder to any static hosting (S3, GitHub Pages, etc.)
 - [ ] Can edit/delete schedules
 - [ ] Drag and drop works
 - [ ] PNG export works
+- [ ] CORS is set to your specific domain (not `*`)
+- [ ] No credentials in git history

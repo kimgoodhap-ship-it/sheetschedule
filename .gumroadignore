@@ -1,0 +1,21 @@
+# Internal planning docs (contain GCP project IDs, Sheet IDs, personal info)
+../scheduler-gumroad-project.md
+../CLAUDE.md
+../.claude/
+../sheetschedule-demo-screenshot.png
+../.playwright-mcp/
+
+# Build artifacts & dependencies
+frontend/node_modules/
+frontend/dist/
+backend/__pycache__/
+
+# Deployment state
+frontend/.netlify/
+frontend/.env
+backend/.env
+
+# Credentials (should never be in repo, but just in case)
+**/credentials.json
+**/*.pem
+**/*.key

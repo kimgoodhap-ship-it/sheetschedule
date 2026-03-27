@@ -1,6 +1,7 @@
 """SheetSchedule API Server - Google Sheets to Gantt Chart"""
 
 import os
+import re
 from typing import Optional
 from contextlib import asynccontextmanager
 
@@ -178,6 +179,15 @@ class SyncOrderRequest(BaseModel):
     orderedIds: list[str]
 
 
+SCHEDULE_ID_PATTERN = re.compile(r'^SCH-\d{4}-\d{3}$')
+
+
+def validate_schedule_id(schedule_id: str):
+    """Validate schedule ID format. Raises 400 if invalid."""
+    if not SCHEDULE_ID_PATTERN.match(schedule_id):
+        raise HTTPException(status_code=400, detail="Invalid schedule ID format. Expected: SCH-YYYY-NNN")
+
+
 # ========== Helper ==========
 
 def convert_schedule_to_response(schedule: dict, row_index: int = 0) -> ScheduleResponse:
@@ -249,7 +259,8 @@ async def get_projects(source: Optional[str] = None):
                 projects.add(str(p))
         return sorted(projects)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Error fetching projects: {e}")
+        raise HTTPException(status_code=500, detail="Failed to fetch projects")
 
 
 @app.get("/api/schedules", response_model=list[ScheduleResponse])
@@ -274,12 +285,14 @@ async def get_schedules(project: Optional[str] = None):
                 for i, s in enumerate(schedules)
             ]
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Internal error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @app.get("/api/schedules/{schedule_id}", response_model=ScheduleResponse)
 async def get_schedule(schedule_id: str):
     """Get a single schedule by ID"""
+    validate_schedule_id(schedule_id)
     if sheets_handler is None:
         raise HTTPException(status_code=503, detail="Google Sheets not connected")
 
@@ -301,7 +314,8 @@ async def get_schedule(schedule_id: str):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Internal error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @app.post("/api/schedules", response_model=ScheduleResponse)
@@ -342,12 +356,14 @@ async def create_schedule(request: ScheduleCreateRequest):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Internal error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @app.patch("/api/schedules/{schedule_id}", response_model=ScheduleResponse)
 async def update_schedule(schedule_id: str, request: ScheduleUpdateRequest):
     """Update an existing schedule"""
+    validate_schedule_id(schedule_id)
     if sheets_handler is None:
         raise HTTPException(status_code=503, detail="Google Sheets not connected")
 
@@ -399,12 +415,14 @@ async def update_schedule(schedule_id: str, request: ScheduleUpdateRequest):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Internal error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @app.delete("/api/schedules/{schedule_id}")
 async def delete_schedule(schedule_id: str):
     """Delete a schedule"""
+    validate_schedule_id(schedule_id)
     if sheets_handler is None:
         raise HTTPException(status_code=503, detail="Google Sheets not connected")
 
@@ -417,7 +435,8 @@ async def delete_schedule(schedule_id: str):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Internal error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @app.post("/api/schedules/reorder")
@@ -443,7 +462,8 @@ async def reorder_schedules(request: ReorderRequest):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Internal error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @app.post("/api/schedules/sync-order")
@@ -464,12 +484,14 @@ async def sync_schedule_order(request: SyncOrderRequest):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Internal error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @app.get("/api/schedules/{schedule_id}/dependencies")
 async def get_schedule_dependencies(schedule_id: str):
     """Get predecessor and successor schedules"""
+    validate_schedule_id(schedule_id)
     if sheets_handler is None:
         raise HTTPException(status_code=503, detail="Google Sheets not connected")
 
@@ -503,7 +525,8 @@ async def get_schedule_dependencies(schedule_id: str):
             "has_warning": len(incomplete_predecessors) > 0
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Internal error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 if __name__ == "__main__":

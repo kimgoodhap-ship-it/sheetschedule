@@ -110,6 +110,15 @@ app/
 └── .env.example        # Environment variable template
 ```
 
+## Security
+
+- **Never commit** `credentials.json` or `.env` files to git
+- **Set CORS** to your specific domain in production (never use `*`)
+- **Use HTTPS** for both frontend and backend
+- **Store credentials** as environment variables in your hosting platform, not in code
+
+See [docs/deployment.md](docs/deployment.md) for detailed security guidelines.
+
 ## License
 
 MIT
