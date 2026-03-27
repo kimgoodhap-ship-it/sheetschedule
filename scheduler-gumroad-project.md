@@ -116,6 +116,7 @@
 | 2026-03-27 | Backend 배포: GCP Cloud Run (sheetschedule-api) | Claude Code | 완료 |
 | 2026-03-27 | Frontend 배포: Netlify (sheetschedule-demo) | Claude Code | 완료 |
 | 2026-03-27 | 데모 사이트 동작 확인 (18개 스케줄, 간트 차트 정상) | Claude Code | 완료 |
+| 2026-03-27 | "Open Sheet" 버튼 추가 (웹앱→구글시트 바로 연결) | Claude Code | 완료 |
 | - | Gumroad 리스팅 문구 | claude.ai | 대기 |
 | - | 마케팅 초안 | claude.ai | 대기 |
 
@@ -177,3 +178,27 @@
 - Gumroad 리스팅에서 개발자 친화적, 소스코드 패키지, self-hosted를 명확히 표기
 - README에 배포 난이도와 필요 기술 수준을 솔직하게 명시
 - SaaS 버전은 당장 개발하지 않음 (추후 별도 결정)
+
+
+## 핵심 셀링 포인트 (2026-03-27, 데모 테스트에서 확인)
+
+### Google Sheets = Your Project Database
+이 제품의 진짜 장점은 간트 차트 자체가 아니라, Google Sheets를 데이터 소스로 사용한다는 점.
+- 구글시트에서 신규 입력/편집하면 웹앱에서 Refresh만 누르면 바로 반영됨
+- 별도 앱에서 복잡한 폼을 채울 필요 없음
+- 스프레드시트를 이미 잘 쓰는 사람이면 학습 비용 제로
+- 데이터가 구글시트에 있으므로 백업, 공유, 협업이 구글 생태계 그대로
+
+### 데모 테스트 결과
+- 구글시트 20행에 Logo Redesign 태스크 추가 -> 웹앱 Refresh -> 즉시 간트 차트에 반영 확인
+- Design 카테고리 아래 새 태스크가 정확한 날짜(4/10-4/25)와 간트 바로 표시됨
+
+### Gumroad 리스팅에 활용할 마케팅 메시지 후보
+- Edit in Google Sheets. See it as a Gantt chart. Instantly.
+- Your spreadsheet IS your project database.
+- No learning curve - if you can use Google Sheets, you can manage projects.
+- No complex forms. No app switching. Just edit your spreadsheet.
+
+### 데모 GIF 아이디어
+구글시트에서 새 일정 입력 -> 웹앱 Refresh 클릭 -> 간트 차트에 즉시 반영
+이 3단계 흐름을 GIF로 만들어 Gumroad 리스팅 메인에 배치
