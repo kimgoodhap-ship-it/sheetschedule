@@ -204,3 +204,212 @@
 ### 데모 GIF 아이디어
 구글시트에서 새 일정 입력 -> 웹앱 Refresh 클릭 -> 간트 차트에 즉시 반영
 이 3단계 흐름을 GIF로 만들어 Gumroad 리스팅 메인에 배치
+
+
+## Gumroad 리스팅 가이드 (2026-03-29, 실제 화면 확인 결과)
+
+### 리스팅 페이지 구조
+Gumroad 제품 편집은 4개 탭으로 구성: Product, Content, Receipt, Share
+URL: https://gumroad.com/products/jwxzwf/edit (이미 draft 생성됨)
+
+### Product 탭 — 작성해야 할 필드
+
+**1. Name** (완료)
+- SheetSchedule
+
+**2. Description** (작성 필요)
+- 리치 텍스트 에디터 (볼드, 이탤릭, 링크, 이미지, 동영상 삽입 가능)
+- 핵심 셀링 포인트와 기능 목록을 여기에 작성
+- 이미지/GIF 삽입 가능 -> 데모 GIF를 여기 넣으면 효과적
+
+**3. URL** (수정 필요)
+- 현재: goodhap.gumroad.com/l/jwxzwf
+- 변경 추천: goodhap.gumroad.com/l/sheetschedule
+
+**4. Cover** (제작 필요)
+- 메인 배너 이미지: 가로형, 최소 1280x720px, 72 DPI, JPG/PNG/GIF
+- 이미지 또는 동영상 업로드 가능
+
+**5. Thumbnail** (제작 필요)
+- 정사각형, 최소 600x600px, JPG/PNG/GIF
+- Gumroad Library, Discover, Profile 페이지에 표시됨
+
+**6. Product Info 섹션**
+- Call to action: 기본값 I want this! (변경 가능)
+- Summary: 짧은 한줄 요약 (You will get...)
+- Additional details: 추가 정보
+
+**7. Pricing** (결정 필요)
+- 현재: USD 19
+- Allow customers to pay what they want 옵션 있음 (최소가 USD 19, 더 내고 싶으면 가능)
+- 할인 코드 자동 적용 옵션 있음
+
+**8. Settings**
+- Publicly show number of sales: 초기에는 OFF 추천 (0건 표시 방지)
+- Refund policy: 설정 추천 (디지털 상품이므로 명확히)
+
+### Content 탭 — 파일 업로드
+- Upload your files 버튼으로 sheetschedule-v1.0.0.zip (92KB) 업로드
+- 텍스트도 추가 가능 (구매 후 안내 메시지)
+
+### Receipt 탭 — 구매 확인 이메일
+- 구매자에게 보내는 이메일 커스터마이즈
+
+### Share 탭 — 공유 설정
+- Publish 후 활성화되는 것으로 추정
+
+### 작성 우선순위
+1. Description 영문 초안 작성 (claude.ai에서)
+2. Cover 이미지 제작 (1280x720px)
+3. Thumbnail 이미지 제작 (600x600px)
+4. URL slug 변경 (sheetschedule)
+5. Summary 작성
+6. 가격 최종 확정
+7. zip 파일 업로드 (Content 탭)
+8. Publish
+
+### Description에 포함할 내용 (영문)
+- 한줄 훅: Google Sheets to Gantt Chart, Instantly
+- 핵심 차별점: 구글시트에서 편집하면 바로 간트 차트에 반영
+- 데모 GIF 또는 스크린샷
+- 기능 목록 (Features)
+- 기술 스택 (Tech Stack)
+- 포함 항목 (What is included)
+- 데모 사이트 링크: https://sheetschedule-demo.netlify.app/
+- 요구 사항 (Requirements): Google Account, Node.js, Python
+- 타겟 사용자 (Who is this for)
+
+
+## 진행 로그 추가 (2026-03-29)
+
+| 날짜 | 작업 내용 | 작업 환경 | 상태 |
+|------|----------|----------|------|
+| 2026-03-29 | Gumroad 제품 등록 (Name, Description, Cover, Thumbnail, URL slug) | claude.ai + 브라우저 | 완료 |
+| 2026-03-29 | Gumroad Content 탭: zip 파일 업로드 (92KB) | 브라우저 | 완료 |
+| 2026-03-29 | Gumroad 결제 수단 설정 (카카오뱅크, SWIFT: KAKOKR22) | 브라우저 | 완료 |
+| 2026-03-29 | Gumroad Publish 완료 | 브라우저 | 완료 |
+| - | Gumroad Discover 노출 | 자동 | 대기 (첫 판매 + Risk Review 필요) |
+| - | 마케팅: Reddit/Twitter/블로그 | claude.ai | 대기 |
+
+## Gumroad 판매 현황 (2026-03-29 기준)
+
+### 제품 페이지
+- **URL**: goodhap.gumroad.com/l/sheetschedule
+- **가격**: USD 19
+- **상태**: Published (판매 가능)
+
+### Gumroad 수수료 구조
+- Direct sales (직접 링크): 10% + 50c + 신용카드 수수료 2.9% + 30c
+- Discover sales (마켓 검색): 30% flat
+- USD 19 직접 판매시 예상 수취액: 약 USD 15.5
+
+### Gumroad Discover 노출 조건
+- 최소 1건 판매 실적 필요
+- Risk Review 프로세스 통과 필요
+- 현재: 미노출 (조건 미충족)
+
+### 마케팅 다음 단계
+첫 판매를 만들기 위한 직접 링크 공유 필요:
+1. Reddit (r/SideProject, r/webdev) - 계정 카르마 필요, 새 계정은 바로 홍보글 차단될 수 있음
+2. Twitter/X - #buildinpublic #indiehackers 태그로 바로 공유 가능
+3. Hacker News - Show HN 게시글로 공유 가능
+4. DEV.to / 개인 블로그 - 빌드 스토리 글 작성
+
+| 2026-03-29 | DEV.to 블로그 포스트 게시 | 브라우저 | 완료 |
+| 2026-03-29 | Hacker News Show HN 게시 (데모 URL) | 브라우저 | 완료 |
+| 2026-03-29 | Hacker News Show HN 시도 | 브라우저 | 차단 (새 계정 제한) |
+| 2026-03-29 | Reddit 계정 생성 | 브라우저 | 완료 (카르마 쌓기 필요) |
+
+## 마케팅 채널 현황 (2026-03-29)
+
+| 채널 | 상태 | 비고 |
+|------|------|------|
+| DEV.to | 게시 완료 | 첫 유입 채널, 제한 없음 |
+| Hacker News | 차단됨 | 새 계정 Show HN 일시 제한 중, 커뮤니티 활동 후 재시도 |
+| Reddit | 계정만 생성 | 카르마 부족, 며칠간 댓글 활동 후 r/SideProject r/webdev 게시 |
+| Twitter/X | 미진행 | 계정 있으면 바로 가능 |
+
+### TODO
+- [ ] 데모 사이트에 Gumroad 구매 링크 추가 (Claude Code)
+- [ ] Reddit 카르마 쌓기 (며칠간 댓글 활동)
+- [ ] Hacker News 커뮤니티 활동 후 Show HN 재시도
+- [ ] DEV.to 반응 모니터링
+
+
+## 프로젝트 최종 현황 (2026-03-30 기준)
+
+### 완료된 모든 작업
+- 코드 범용화 (한국어->영어, 회사데이터 제거, 설정 분리)
+- 패키징 (보안 검증 통과, 92KB zip)
+- 데모 사이트 배포 (Frontend: Netlify, Backend: GCP Cloud Run)
+- Gumroad Publish 완료 (goodhap.gumroad.com/l/sheetschedule, USD 19)
+- Gumroad Affiliate 설정 (50% 커미션, Signup Form 활성화)
+- DEV.to 블로그 포스트 게시
+- Reddit 계정 생성 (카르마 쌓기 필요)
+- Hacker News 계정 생성 (Show HN 일시 제한, 활동 필요)
+
+### 현재 판매 채널
+| 채널 | URL | 상태 |
+|------|-----|------|
+| Gumroad 제품 | goodhap.gumroad.com/l/sheetschedule | Published |
+| 데모 사이트 | sheetschedule-demo.netlify.app | 운영중 |
+| Affiliate 신청 | goodhap.gumroad.com/affiliates | 활성화 (50% 커미션) |
+| DEV.to 블로그 | 게시 완료 | 15+ reads |
+| GitHub | github.com/kimgoodhap-ship-it/sheetschedule | Public |
+
+### 다음에 할 일 (우선순위)
+1. DEV.to 반응 모니터링 (검색 유입 기다리기)
+2. 한국 커뮤니티에 경험기 올리기 (클리앙, 긱뉴스, 브런치) - 가장 자연스러운 채널
+3. Reddit/HN 커뮤니티 활동으로 카르마 쌓기
+4. 데모 사이트에 Gumroad 구매 링크 추가 (Claude Code)
+5. 첫 판매 발생시 Gumroad Discover 자동 노출
+
+### 프로젝트 회고
+- 원래 목적인 마켓플레이스 판매 경험 쌓기는 달성
+- 코드 작업은 Claude Code, 기획/전략/컨텐츠는 claude.ai 분담이 효과적이었음
+- SNS 마케팅은 계정 카르마/평판 요구 때문에 새 계정으로 즉시 효과 내기 어려움
+- 한국어 커뮤니티가 비개발자 입장에서 더 자연스러운 마케팅 채널
+- Fiverr 등 프리랜서 플랫폼은 USD 19 제품 규모에서는 투자 대비 효과 불확실
+| 2026-04-01 | Indie Hackers 제품 페이지 등록 | 브라우저 | 완료 |
+| - | Indie Hackers 첫 포스트 작성 | 브라우저 | 대기 |
+| 2026-04-01 | Indie Hackers 첫 포스트 작성 | 브라우저 | 완료 |
+
+## 현재 마케팅 채널 최종 현황 (2026-04-01)
+
+| 채널 | URL | 상태 |
+|------|-----|------|
+| Gumroad | goodhap.gumroad.com/l/sheetschedule | Published, Affiliate 50% |
+| 데모 사이트 | sheetschedule-demo.netlify.app | 운영중 |
+| DEV.to | 게시됨 | 19 reads |
+| Indie Hackers | indiehackers.com/product/sheetschedule | 제품+포스트 등록 완료 |
+| Reddit | 계정 생성 | 카르마 필요 |
+| Hacker News | 계정 생성 | Show HN 제한 |
+
+
+## 마케팅 2트랙 전략 (2026-04-01 수립)
+
+### 방법 1: 제품 등록형 (올려두면 발견되는 구조)
+완료: Gumroad, DEV.to, Indie Hackers
+다음: SideProjectors, AlternativeTo, Uneed, MicroLaunch, OpenHunts, Smol Launch
+
+### 방법 2: 커뮤니티 참여형 (관련 대화를 찾아가는 구조)
+Discord 서버 가입, Quora 답변, Reddit 댓글 (카르마 쌓은 후)
+검색 키워드: google sheets gantt chart, lightweight project management, simple scheduling tool
+
+상세 전략: marketing-strategy.md 참조
+
+
+## 진행 로그 (2026-04-02)
+| 날짜 | 작업 내용 | 상태 |
+|------|----------|------|
+| 2026-04-02 | Indie Hackers 제품+포스트 등록 확인 | 완료 |
+| 2026-04-02 | SideProjectors 폼 채우기 시작 (type, name, pitch, description, markets) | 진행중 |
+| 2026-04-02 | 마케팅 2트랙 전략 수립 (등록형 15개 + 참여형 6개 채널) | 완료 |
+| 2026-04-02 | marketing-strategy.md 작성 및 프로젝트 파일 추가 | 완료 |
+| 2026-04-02 | directory-submission-data.json 생성 (Claude Code용 자동화 데이터) | 완료 |
+| 2026-04-02 | Submify Chrome 확장 검토 | 검토만 |
+
+### 다음 작업 (Claude Code에서)
+- directory-submission-data.json을 읽고 Playwright 스크립트 작성
+- 10개 디렉토리 사이트 자동 등록
+- SideProjectors 등록 완료 (Markets 선택, 나머지 단계 진행)

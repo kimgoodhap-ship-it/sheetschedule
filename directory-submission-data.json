@@ -1,0 +1,122 @@
+{
+  "product": {
+    "name": "SheetSchedule",
+    "tagline": "Turn Google Sheets into a Gantt Chart",
+    "url": "https://sheetschedule-demo.netlify.app/",
+    "gumroad_url": "https://goodhap.gumroad.com/l/sheetschedule",
+    "github_url": "https://github.com/kimgoodhap-ship-it/sheetschedule",
+    "affiliate_url": "https://goodhap.gumroad.com/affiliates",
+    "price": "USD 19 (one-time)",
+    "pitch": "Turn Google Sheets into a Gantt chart \u2014 edit your spreadsheet, see it instantly.",
+    "description": "SheetSchedule is a lightweight Gantt chart web app that uses Google Sheets as its database. Add a row in Google Sheets, click Refresh in the browser, and watch it appear as a Gantt bar instantly. No forms, no app switching, no learning curve. Full source code package available on Gumroad.",
+    "tech_stack": [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Python",
+      "FastAPI",
+      "Google Sheets API",
+      "gspread"
+    ],
+    "features": [
+      "Google Sheets as database",
+      "Real-time sync with Refresh",
+      "Drag and drop reordering",
+      "3 time scales (Monthly, Weekly, Daily)",
+      "Project filtering and hierarchy",
+      "PNG and JSON export",
+      "Color coding"
+    ],
+    "categories": [
+      "Project Management",
+      "Productivity Software",
+      "Developer Tools",
+      "Data Visualization"
+    ],
+    "logo_path": "~/claude-projects/Gumroad_project/upload/files/thumbnail-600x600.png",
+    "cover_path": "~/claude-projects/Gumroad_project/upload/files/cover-1280x720.png"
+  },
+  "sites": [
+    {
+      "name": "SideProjectors",
+      "url": "https://www.sideprojectors.com/",
+      "submit_url": "https://www.sideprojectors.com/submit/type",
+      "status": "submitted",
+      "type": "showcase",
+      "project_id": "76965",
+      "submitted_date": "2026-04-02",
+      "note": "Under review, 2-3 business days"
+    },
+    {
+      "name": "AlternativeTo",
+      "url": "https://alternativeto.net/",
+      "submit_url": "https://alternativeto.net/manage/new/",
+      "status": "skipped",
+      "note": "Google login failed in Playwright Chrome profile - manual registration needed",
+      "alternative_to": [
+        "Monday.com",
+        "MS Project",
+        "Asana"
+      ]
+    },
+    {
+      "name": "Uneed",
+      "url": "https://www.uneed.best/",
+      "submit_url": "https://www.uneed.best/submit-a-tool",
+      "status": "submitted",
+      "product_id": "28397",
+      "edit_url": "https://www.uneed.best/edit/waiting-line/28397",
+      "submitted_date": "2026-04-02",
+      "note": "All fields complete. Ready to schedule launch."
+    },
+    {
+      "name": "MicroLaunch",
+      "url": "https://microlaunch.net/",
+      "status": "todo"
+    },
+    {
+      "name": "OpenHunts",
+      "url": "https://openhunts.com/",
+      "status": "todo"
+    },
+    {
+      "name": "Smol Launch",
+      "url": "https://smollaunch.com/",
+      "status": "todo"
+    },
+    {
+      "name": "DevHunt",
+      "url": "https://devhunt.org/",
+      "status": "todo"
+    },
+    {
+      "name": "SaaSHub",
+      "url": "https://saashub.com/",
+      "status": "todo"
+    },
+    {
+      "name": "BetaList",
+      "url": "https://betalist.com/",
+      "status": "todo"
+    },
+    {
+      "name": "Launching Next",
+      "url": "https://launchingnext.com/",
+      "status": "todo"
+    }
+  ],
+  "completed": [
+    {
+      "name": "Gumroad",
+      "url": "https://goodhap.gumroad.com/l/sheetschedule"
+    },
+    {
+      "name": "DEV.to",
+      "url": "blog post published"
+    },
+    {
+      "name": "Indie Hackers",
+      "url": "https://www.indiehackers.com/product/sheetschedule"
+    }
+  ]
+}
