@@ -413,3 +413,22 @@ Discord 서버 가입, Quora 답변, Reddit 댓글 (카르마 쌓은 후)
 - directory-submission-data.json을 읽고 Playwright 스크립트 작성
 - 10개 디렉토리 사이트 자동 등록
 - SideProjectors 등록 완료 (Markets 선택, 나머지 단계 진행)
+
+
+## 진행 로그 추가 (2026-04-02)
+| 날짜 | 작업 내용 | 상태 |
+|------|----------|------|
+| 2026-04-02 | 마케팅 2트랙 전략 수립 (등록형 15개 + 참여형 6개) | 완료 |
+| 2026-04-02 | marketing-strategy.md 프로젝트 파일 추가 | 완료 |
+| 2026-04-02 | SideProjectors 폼 채우기 시작 (type, name, pitch, description) | 진행중 (Draft) |
+| 2026-04-02 | Submify 등 자동화 도구 리서치 | 완료 |
+| 2026-04-02 | Claude Code + Playwright 자동화 방향 결정 | 완료 |
+| 2026-04-02 | directory-auto-submit-guide.md 작성 (Claude Code용 종합 가이드) | 완료 |
+| 2026-04-02 | directory-submission-data.json 생성 | 완료 |
+
+### 다음 작업 (Claude Code에서)
+1. directory-auto-submit-guide.md 읽기
+2. Playwright MCP 또는 Browser Use 설정
+3. Claude Code가 직접 DOM을 분석하고 폼을 채우는 방식으로 자동화
+4. SideProjectors 등록 완료 (Draft 상태)
+5. AlternativeTo, Uneed 등 나머지 사이트 순차 등록
